@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wally Markdown Test</title>
+    <link rel="stylesheet" href="wally-styles.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .test-container {
+            display: flex;
+            margin-bottom: 30px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .markdown-input, .markdown-output {
+            flex: 1;
+            padding: 15px;
+        }
+        .markdown-input {
+            background-color: #f8f8f8;
+            border-right: 1px solid #eee;
+        }
+        .markdown-output {
+            background-color: white;
+        }
+        pre {
+            white-space: pre-wrap;
+            background-color: #f5f5f5;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        textarea {
+            width: 100%;
+            height: 200px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        .test-case {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 4px;
+        }
+        .test-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        :root {
+            --wally-primary: #3498db;
+            --wally-secondary: #2980b9;
+            --wally-text: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Wally Markdown Formatter Test</h1>
+    
+    <div class="test-container">
+        <div class="markdown-input">
+            <h2>Input Markdown</h2>
+            <textarea id="markdown-input">## Hello Wally
+
+This is a test of our **enhanced** markdown formatter.
+
+### Features:
+
+* Headers (h1 through h6)
+* **Bold** and *italic* text
+* ~~Strikethrough~~ text
+* `inline code` and code blocks
+* [Links](https://www.meetwally.app)
+* Ordered and unordered lists
+* > Blockquotes
+* Tables
+* Horizontal rules
+
+---
+
+### Code example:
+
+```javascript
+function formatMarkdown(content) {
+  // Process the markdown content
+  return formattedHTML;
+}
+```
+
+### Table example:
+
+| Feature | Status |
+|---------|--------|
+| Headers | ✅ |
+| Bold/Italic | ✅ |
+| Code blocks | ✅ |
+| Lists | ✅ |
+| Tables | ✅ |</textarea>
+            <button id="format-button">Format Markdown</button>
+        </div>
+        <div class="markdown-output">
+            <h2>Formatted Output</h2>
+            <div id="output" class="wally-markdown"></div>
+        </div>
+    </div>
+
+    <h2>Test Cases</h2>
+
+    <div class="test-cases">
+        <!-- Headings Test -->
+        <div class="test-case">
+            <div class="test-title">Headings</div>
+            <div class="wally-markdown">
+                <h1>Heading 1</h1>
+                <h2>Heading 2</h2>
+                <h3>Heading 3</h3>
+                <h4>Heading 4</h4>
+                <h5>Heading 5</h5>
+                <h6>Heading 6</h6>
+            </div>
+        </div>
+
+        <!-- Text Formatting Test -->
+        <div class="test-case">
+            <div class="test-title">Text Formatting</div>
+            <div class="wally-markdown">
+                <p>This is <strong>bold text</strong></p>
+                <p>This is <em>italic text</em></p>
+                <p>This is <del>strikethrough text</del></p>
+                <p>This is <code>inline code</code></p>
+            </div>
+        </div>
+
+        <!-- Code Blocks Test -->
+        <div class="test-case">
+            <div class="test-title">Code Block</div>
+            <div class="wally-markdown">
+                <pre><code class="language-javascript">function test() {
+  console.log("Hello, world!");
+}</code></pre>
+            </div>
+        </div>
+
+        <!-- List Test -->
+        <div class="test-case">
+            <div class="test-title">Lists</div>
+            <div class="wally-markdown">
+                <ul>
+                    <li>Unordered Item 1</li>
+                    <li>Unordered Item 2</li>
+                    <li>Unordered Item 3</li>
+                </ul>
+                <ol>
+                    <li>Ordered Item 1</li>
+                    <li>Ordered Item 2</li>
+                    <li>Ordered Item 3</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Table Test -->
+        <div class="test-case">
+            <div class="test-title">Table</div>
+            <div class="wally-markdown">
+                <table class="wally-markdown-table">
+                    <tbody>
+                        <tr>
+                            <th>Header 1</th>
+                            <th>Header 2</th>
+                            <th>Header 3</th>
+                        </tr>
+                        <tr>
+                            <td>Cell 1</td>
+                            <td>Cell 2</td>
+                            <td>Cell 3</td>
+                        </tr>
+                        <tr>
+                            <td>Cell 4</td>
+                            <td>Cell 5</td>
+                            <td>Cell 6</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Blockquote Test -->
+        <div class="test-case">
+            <div class="test-title">Blockquote</div>
+            <div class="wally-markdown">
+                <blockquote>This is a blockquote</blockquote>
+            </div>
+        </div>
+
+        <!-- Horizontal Rule Test -->
+        <div class="test-case">
+            <div class="test-title">Horizontal Rule</div>
+            <div class="wally-markdown">
+                <p>Content above</p>
+                <hr>
+                <p>Content below</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="prompt-kit-message.js"></script>
+    <script>
+        document.getElementById('format-button').addEventListener('click', function() {
+            const input = document.getElementById('markdown-input').value;
+            const output = document.getElementById('output');
+            output.innerHTML = formatMarkdown(input);
+        });
+
+        // Format the initial content
+        document.getElementById('format-button').click();
+    </script>
+</body>
+</html>
